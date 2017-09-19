@@ -30,48 +30,37 @@ Code based on <https://github.com/ebfull/lightning_circuit>.
 `npm install`
 
 ### Running  
-`node index.js senderBalance=10000 receiverBalance=9000`
+`node index.js startBalance=10000`
+
+First select  
+1. Single payment in and single payment out
+2. Multiple payments in and multiple payments out
 
 Follow the prompts.  
 
-1. Generates a key pair
-2. Generates a sender proof
-3. Generates a receiver proof
-4. Verifies the proofs
+1. Generate a key pair
+2. Generate a proof (single or multiple)
+4. Verify proof
 0. Quit
 
 #### Generate a new key pair  
-This creates a new proving key and verification key from the circuit.  They are saved to the files provingKey and verificationKey
+This creates a new proving key and verification key from the circuit.  They are saved to the files:  
+* `provingKey-single` or `provingKey-multi`
+* `verificationKey-single` or `verificationKey-multi`
 
-#### Generate a send payment proof  
-This generates a proof using the proving key as well as the input values:
+#### Generate a payment proof  
+This generates a proof using the proving key as well as the following values:
 
-* start balance = sender balance (as defined in option 1)
-* payment amount = payment amount (as defined in option 1)
-* end balance = start balance - payment amount
+* `start balance`
+* `incoming payment/s`
+* `outgoing payment/s`
+* `end balance` (start balance + incoming - outgoing)
 
-The proof is end balance + payment amount = start balance
+The proof is:  
+* `start balance` + `incoming payments` = `end balance` + `outgoing payments`
 
-#### Generate a receiver payment proof  
-This generates a proof using the proving key as well as the input values:
-
-* start balance = receiver balance (as defined in option 1)
-* payment amount = payment amount (as defined in option 1)
-* end balance = start balance + payment amount
-
-The proof is start balance + payment amount = end balance
-
-#### Verify proofs  
-Verifies the send payment proof generated in option 2 and the receive payment proof generated in option 3.  Uses the public inputs (i.e. the salted hashes of the balances and the payment amount)
-
-## anatomy
-
-* `src/gadget.hpp` exposes the gadget, which is an abstraction of related constraint
-and witness behavior in a circuit. This gadget uses other gadgets, creates its own
-constraints, and exposes an interface for building input maps.
-
-* `src/snark.hpp` exposes a loose wrapper around the constraint system and
-key generation used by `test.cpp` to construct proofs and verify them as necessary.
+#### Verify payment proof  
+Verifies the above proofs
 
 # License
 Copyright (C) 2017 The Quorum Zero Knowledge Proof Authors.

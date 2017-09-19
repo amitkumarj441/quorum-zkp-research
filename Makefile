@@ -12,14 +12,18 @@ LDLIBS += -L$(INSTALLDIR)/usr/local/lib/ -lsnark -lff -lgmpxx -lgmp
 LDLIBS += -lboost_system
 
 all:
-	$(CXX) -o generateKeyPair.o src/generateKeyPair.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
-	$(CXX) -o generateKeyPair generateKeyPair.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
-	$(CXX) -o generateProof.o src/generateProof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
-	$(CXX) -o generateProof generateProof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
-	$(CXX) -o verifyProof.o src/verifyProof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
-	$(CXX) -o verifyProof verifyProof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
-#	$(CXX) -o test.o src/test.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
-#	$(CXX) -o test test.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+##	$(CXX) -o payment_in_out_generate_keypair.o src/payment_in_out_generate_keypair.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+##	$(CXX) -o payment_in_out_generate_keypair payment_in_out_generate_keypair.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+##	$(CXX) -o payment_in_out_generate_proof.o src/payment_in_out_generate_proof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+##	$(CXX) -o payment_in_out_generate_proof payment_in_out_generate_proof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+##	$(CXX) -o payment_in_out_verify_proof.o src/payment_in_out_verify_proof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+##	$(CXX) -o payment_in_out_verify_proof payment_in_out_verify_proof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CXX) -o payment_multi_generate_keypair.o src/payment_multi_generate_keypair.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+	$(CXX) -o payment_multi_generate_keypair payment_multi_generate_keypair.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CXX) -o payment_multi_generate_proof.o src/payment_multi_generate_proof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+	$(CXX) -o payment_multi_generate_proof payment_multi_generate_proof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CXX) -o payment_multi_verify_proof.o src/payment_multi_verify_proof.cpp -c $(CXXFLAGS) $(LIBSNARK_FLAGS) $(OPTFLAGS)
+	$(CXX) -o payment_multi_verify_proof payment_multi_verify_proof.o $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
 
 clean:
 	$(RM) test.o test
